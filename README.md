@@ -8,6 +8,8 @@
 
 * `label_progagation.py` calculates labels with label propagation
 
+* `fabp.py` calculates labels by FaBP
+
 ## How to use
 
 A complete working pipeline is shown in `example.sh`
