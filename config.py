@@ -11,4 +11,5 @@ def GetConfig(option):
         CONFIG['RAW_DATA'] = './data/AffectiveText.Semeval.2007/data/raw.pkl'
         CONFIG['SAVED_RAW_DATA'] = './data/AffectiveText.Semeval.2007/pre_load.pkl'
         CONFIG['TENSOR_EMBEDDING'] = './data/AffectiveText.Semeval.2007/tensor_embedding.pkl'
+        CONFIG['RESULT'] = './data/AffectiveText.Semeval.2007/result.mat'
     return CONFIG
