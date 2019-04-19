@@ -1,6 +1,14 @@
 import nltk
 import collections
 
+def Idx2Word(doc_idx, vocabulary):
+    words = []
+    for idx in doc_idx:
+        if idx == 0 or idx==1:
+            break
+        words.append(vocabulary[idx])
+    return words
+
 def Path2Sentence(file_path):
     file = open(file_path)
     sentences = file.read().split('\n')

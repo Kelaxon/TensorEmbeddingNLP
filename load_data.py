@@ -6,6 +6,8 @@ import argparse
 from config import *
 from load_data_util import *
 from load_data_semeval2007 import SemEval2007_Path2String
+from load_data_sentiment import *
+from load_data_Pun import *
 
 def _Load16000Oneliners(ROOT_PATH):
     file_path_pos = os.path.join(ROOT_PATH, 'Jokes16000-utf8.txt')
@@ -92,11 +94,21 @@ def _LoadSemEval2007(ROOT_PATH):
 def LoadData(ROOT_PATH, option):
     if option=="semeval2007":
         return _LoadSemEval2007(ROOT_PATH)
+    if option == "SST1":
+        return LoadSST1(ROOT_PATH)
+    if option == "SST2":
+        return LoadSST2(ROOT_PATH)
+    if option == "CR":
+        return LoadCR(ROOT_PATH)
+    if option == "SUBJ":
+        return LoadSUBJ(ROOT_PATH)
+    if option == "Pun":
+        return LoadPun(ROOT_PATH)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("--option", help="use which dataset", default='semeval2007')
-    parser.add_argument('--label_portion', help='proportion of labels', type=float, default=0.5)
+    parser.add_argument("--option", help="use which dataset", default='Pun')
+    parser.add_argument('--label_portion', help='proportion of labels', type=float, default=0.9)
     parser.add_argument("--seed", help="reproducible experiment with seeds", type=int, default=666)
     args = parser.parse_args()
 
@@ -116,9 +128,9 @@ if __name__ == '__main__':
     y = y[inds_all]
 
     inds_all = np.array(range(N))
-    test_num = int((1 - args.label_portion) * N)
-    inds_train = inds_all[:N - test_num]
-    inds_test = inds_all[N - test_num:]
+    train_num = int(args.label_portion * N)
+    inds_train = inds_all[:train_num]
+    inds_test = inds_all[train_num:]
 
     X_train = X[inds_train]
     y_train = y[inds_train]

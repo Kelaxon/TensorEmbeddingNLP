@@ -35,7 +35,7 @@ class TwoDimDict():
         self.data = {}
     def add(self, i, j, val):
         if i in self.data and j in self.data[i]:
-            self.data[i][j] += val
+            self.data[i][j] = val
         else:
             if i in self.data:
                 self.data[i][j] = val
@@ -49,46 +49,46 @@ class TwoDimDict():
 
 coord_list = []
 val_list = []
+# for k in range(doc_size):
+#     word_word_dict = TwoDimDict()
+#
+#     # print('build word_word_doc tensor, {:d}/{:d} ...'.format(k, doc_size))
+#     inds = list(range(sentence_size))
+#     for i in range(0, sentence_size-args.win_size+1):
+#         idx_i = i
+#         if X[k][idx_i]==0:
+#             break
+#         for j in range(args.win_size):
+#             idx_j = i+j
+#             if X[k][idx_j] == 0:
+#                 continue
+#             word_word_dict.add(X[k][idx_i], X[k][idx_j], 1)
+#
+#
+#     for item in word_word_dict.get_item():
+#         coord_list.append((item[0], item[1], k))
+#         val_list.append(item[2])
+
 for k in range(doc_size):
     word_word_dict = TwoDimDict()
 
+    # by Andrew, April 04, 2019
     # print('build word_word_doc tensor, {:d}/{:d} ...'.format(k, doc_size))
-    inds = list(range(sentence_size))
-    for i in range(0, sentence_size-args.win_size+1):
-        idx_i = i
-        if X[k][idx_i]==0:
+    for i in range(1, sentence_size):
+        if X[k][i]==0:
             break
-        for j in range(args.win_size):
-            idx_j = i+j
-            if X[k][idx_j] == 0:
-                continue
-            word_word_dict.add(X[k][idx_i], X[k][idx_j], 1)
+        for j in range(1, args.win_size+1):
+            left_win_idx = i-j
+            right_win_idx = i+j
 
+            for win_idx in [left_win_idx, right_win_idx]: #check the window both to left and to right
+                if (win_idx >= 0) and (win_idx < sentence_size) and (X[k][win_idx] != 0):
+                    #if it is a valid index and it refers to a valid vocab item
+                    word_word_dict.add(X[k][i], X[k][win_idx], 1)
 
     for item in word_word_dict.get_item():
         coord_list.append((item[0], item[1], k))
         val_list.append(item[2])
-
-# for k in range(doc_size):
-#     word_word_dict = TwoDimDict()
-
-#     # by Andrew, April 04, 2019
-#     # print('build word_word_doc tensor, {:d}/{:d} ...'.format(k, doc_size))
-#     for i in range(1, sentence_size):
-#         if X[k][i]==0:
-#             break
-#         for j in range(1, args.win_size+1):
-#             left_win_idx = i-j
-#             right_win_idx = i+j
-
-#             for win_idx in [left_win_idx, right_win_idx]: #check the window both to left and to right
-#                 if (win_idx >= 0) and (win_idx < sentence_size) and (X[k][win_idx] != 0):
-#                     #if it is a valid index and it refers to a valid vocab item
-#                     word_word_dict.add(X[k][i], X[k][win_idx], 1)
-
-#     for item in word_word_dict.get_item():
-#         coord_list.append((item[0], item[1], k))
-#         val_list.append(item[2])
 
 # matlab tensor cp #
 

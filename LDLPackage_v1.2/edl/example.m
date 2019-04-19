@@ -18,6 +18,5 @@ file_path = fullfile(root_path, '');
 test_result = CVResultAppend(test_result, precision, recall, accuracy, F1, distance, dist_name);   
 
 fprintf('*******************************************************\n\n\n');
-fprintf('cnn\n');
 CVResultDisplay(test_result);
 
