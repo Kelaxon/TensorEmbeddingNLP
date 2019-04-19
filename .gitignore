@@ -1,1 +1,10 @@
 scikit-learn
+
+
+# jupyter notebook
+.ipynb_checkpoints
+__pycache__
+
+# Chris' stuff
+Chris-draft.ipynb
+Chris-test.py
