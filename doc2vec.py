@@ -7,7 +7,7 @@ import os
 from config import *
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--option", help="use which dataset", default='16000oneliners')
+parser.add_argument("--option", help="use which dataset", default='semeval2007')
 parser.add_argument("--win_size", help="window size", type=int, default=5)
 parser.add_argument("--cp_rank", help="window size", type=int, default=10)
 args = parser.parse_args()

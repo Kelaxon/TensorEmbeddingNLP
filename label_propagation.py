@@ -1,4 +1,4 @@
-from sklearn.semi_supervised import LabelPropagation
+from sklearn.semi_supervised import LabelPropagation, LabelSpreading
 import argparse
 import joblib
 import numpy as np

@@ -5,4 +5,10 @@ def GetConfig(option):
         CONFIG['RAW_DATA'] = './data/16000 oneliners/data/raw.pkl'
         CONFIG['SAVED_RAW_DATA'] = './data/16000 oneliners/pre_load.pkl'
         CONFIG['TENSOR_EMBEDDING'] = './data/16000 oneliners/tensor_embedding.pkl'
+
+    if option=='semeval2007':
+        CONFIG['ROOT_PATH'] = './data/AffectiveText.Semeval.2007/'
+        CONFIG['RAW_DATA'] = './data/AffectiveText.Semeval.2007/data/raw.pkl'
+        CONFIG['SAVED_RAW_DATA'] = './data/AffectiveText.Semeval.2007/pre_load.pkl'
+        CONFIG['TENSOR_EMBEDDING'] = './data/AffectiveText.Semeval.2007/tensor_embedding.pkl'
     return CONFIG
